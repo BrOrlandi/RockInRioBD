@@ -15,14 +15,39 @@
 					<li><a href="/rockinriobd/bandas/">BANDAS</a></li>
 					<li><a href="/rockinriobd/artistas/">ARTISTAS</a></li>
 				</ul>
+				<div id="nav-log-bar">
+				<?php
+				session_start();
 				
+				if(isset($_SESSION['nome']) && isset($_SESSION['emailMD5']) && isset($_SESSION['senha'])){
+					$nome = $_SESSION['nome'];
+					$email = $_SESSION['emailMD5'];
+					$senha = $_SESSION['senha'];
+				?>
+
+				<div class="nav-collapse collapse pull-right">
+					<ul class="nav"><li><a href="/rockinriobd/minhaconta/"><?php echo $nome; ?></a></li></ul>
+					<a href="/rockinriobd/minhaconta/"><img src="https://secure.gravatar.com/avatar/<?php echo $email; ?>?s=50"/></a>
+              		<button id="nav-logout" style="margin-left: 30px" class="btn btn-primary">Sair</button>
+				</div>
 				
-			 <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="E-mail">
-              <input class="span2" type="password" placeholder="Senha">
-              <button type="submit" class="btn btn-primary">Entrar</button>
-            </form>
-            
+				<?php
+				}else{
+				?>
+				
+				<form id="nav_logar" method="POST" data-async class="navbar-form pull-right">
+					<input id="nav_email" name="nav_email" class="span2" type="text" placeholder="E-mail">
+					<input id="nav_senha" name="nav_senha" class="span2" type="password" placeholder="Senha">
+					<button type="submit" class="btn btn-primary">Entrar</button>
+					<a style="margin-left: 30px" href="/rockinriobd/cadastros/cadastro_usuario.php" class="btn btn-primary">Cadastre-se</a>
+				</form>
+				
+				<?php
+				}
+				
+				?>
+				</div>
+				
 			</div>
 		</div>
 	</div>
