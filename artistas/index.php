@@ -10,26 +10,9 @@
 	</head>
 	<body>
 		
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar icon-white"></span>
-						<span class="icon-bar icon-white"></span>
-						<span class="icon-bar icon-white"></span>
-						</a>
-					<a href="#" class="brand">ROCK IN RIO 2013</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav pull-left">
-							<li><a href="../">LINE-UP</a></li>
-							<li><a href="../dias/">DIAS DO EVENTO</a></li>
-							<li><a href="../bandas/">BANDAS</a></li>
-							<li class="active"><a href="">ARTISTAS</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+
+		<!-- Incluir Barra de Navegação -->
+		<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/navbar.php"); ?>
 		
 		<div class="hero-unit">
 			<h1>Artistas</h1>

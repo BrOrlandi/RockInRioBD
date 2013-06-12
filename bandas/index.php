@@ -3,38 +3,20 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Rock in Rio 2013</title>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css"/>
+		<title>Bandas</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css"/>
 
 	</head>
 	<body>
 		
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar icon-white"></span>
-						<span class="icon-bar icon-white"></span>
-						<span class="icon-bar icon-white"></span>
-						</a>
-					<a href="#" class="brand">ROCK IN RIO 2013</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav pull-left">
-							<li class="active"><a href="#">LINE-UP</a></li>
-							<li><a href="dias/">DIAS DO EVENTO</a></li>
-							<li><a href="bandas/">BANDAS</a></li>
-							<li><a href="artistas/">ARTISTAS</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+
+		<!-- Incluir Barra de Navegação -->
+		<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/navbar.php"); ?>
 		
 		<div class="hero-unit">
-					<h1>LineUp</h1>
-					<p>Confira o LineUp do Rock in Rio!</p>     
-            
+			<h1>Bandas</h1>
+			<p>Confira todas as bandas presentes no Rock in Rio 2013!</p>
 		</div>
 		
 		<div class="container">
@@ -51,11 +33,7 @@ Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá 
 				</div>
 				</div>
 				<div class="span6">
-                	<div class="text-center">
-						<h1>Ingressos à venda!!!</h1>
-						<p>Faça o seu cadastro para comprar!</p>
-						<p><a class="btn btn-large btn-primary" href=""><span class="icon-user icon-white"></span> Cadastre-se Aqui!</a></p>
-                    </div>
+					Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.
 				</div>
 			</div>
 		</div>
