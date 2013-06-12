@@ -3,10 +3,13 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Artistas</title>
+		<title>Artistas - Rock in Rio 2013</title>
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css"/>
 
+		<script src="/rockinriobd/js/jquery-2.0.1.min.js"></script>
+		<script src="/rockinriobd/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/rockinriobd/js/navbar_login.js"></script>
 	</head>
 	<body>
 		
@@ -38,8 +41,8 @@ Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá 
 			</div>
 		</div>
 		
-		<script src="js/jquery-2.0.1.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="/rockinriobd/js/jquery-2.0.1.min.js"></script>
+		<script src="/rockinriobd/bootstrap/js/bootstrap.min.js"></script>
 	</body>
 	
 </html>

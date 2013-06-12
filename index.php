@@ -6,6 +6,10 @@
 		<title>Rock in Rio 2013</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css"/>
+		
+		<script src="/rockinriobd/js/jquery-2.0.1.min.js"></script>
+		<script src="/rockinriobd/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/rockinriobd/js/navbar_login.js"></script>
 
 	</head>
 	<body>
@@ -37,14 +41,11 @@ Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá 
                 	<div class="text-center">
 						<h1>Ingressos à venda!!!</h1>
 						<p>Faça o seu cadastro para comprar!</p>
-						<p><a class="btn btn-large btn-primary" href=""><span class="icon-user icon-white"></span> Cadastre-se Aqui!</a></p>
+						<p><a class="btn btn-large btn-primary" href="/rockinriobd//cadastros/cadastro_usuario.php"><span class="icon-user icon-white"></span> Cadastre-se Aqui!</a></p>
                     </div>
 				</div>
 			</div>
 		</div>
-		
-		<script src="js/jquery-2.0.1.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 	
 </html>
