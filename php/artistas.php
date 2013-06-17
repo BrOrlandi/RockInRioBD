@@ -22,7 +22,7 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 				echo "Data de Nascimento: <b>".date_format(date_create($dados['data_nasc']), "d/m/Y")." (".$dados['idade']." anos)</b></br>";
 				echo "<a href=\"http://www.google.com.br/search?q=".$dados['nome_titulo']."\">Pesquisar <b>".$dados['nome_titulo']."</b> no Google</a></br>";
 				echo "</p><p>";
-				echo "Banda: </br>";
+				echo "<h3 style=\"color:#ffffff;\">Bandas:</h3>";
 				
 				$sql = "SELECT banda,funcao FROM Banda_Artista BA WHERE artista='".$artista."';";
 				$result = $db->query($sql);	
