@@ -142,7 +142,7 @@
 </fieldset>
 </form>
 
-			<div id="error" class="well well-small invisible"></div>
+			<div id="message" class="alert invisible"></div>
 
 		</div>
 		

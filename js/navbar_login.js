@@ -13,6 +13,10 @@ $('#nav_logar').submit(function(event) {
 				location.reload();
 				return true;
 			}
+			else
+			{
+				$('#error_message').html('<div class="alert">Usuário não existe ou senha incorreta!</div>');
+			}
 		}
 	});	
 });

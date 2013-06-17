@@ -1,36 +1,45 @@
 
-
 $('#cadastrar_usuario').submit(function(event) {
 	event.preventDefault();
-	
+
 	var $form = $(this);
 	
 	var email = $('#email').val();
 	if(!validateEmail(email)){
-		$('#error').removeClass('invisible');
-		$('#error').html("<p>E-mail não está em um formato válido.</p>");
+
+		$('#message').removeClass('invisible');
+		$('#message').html("<p>E-mail não está em um formato válido.</p>");
+
 		return false;
 	}
 	
 	var senha = $('#senha').val();
 	var csenha = $('#confsenha').val();
 	if(senha != csenha){
-		$('#error').removeClass('invisible');
-		$('#error').html("<p>Senha não foi confirmada corretamente.</p>");
+		$('#message').removeClass('invisible');
+		$('#message').html("<p>Senha não foi confirmada corretamente.</p>");
 		return false;
 	}
 	
-	$('#error').addClass('invisible');
+	$('#message').addClass('invisible');
 	
 	$.ajax({
+		dataType: "json",
 		type: $form.attr('method'),
 		url: $form.attr('action'),
 		data: $form.serialize(),
 		success: function(data,status){
 			if(data != null){
-				$('#error').removeClass('invisible');
-				$('#error').html("<p>"+data+"</p>");
-				return false;
+				//var obj = jQuery.parse(data);
+				if(data.error == 1)
+				{
+					$('#message').removeClass('invisible');
+					$('#message').html("<p>"+data.message+"</p>");
+				}else{
+					$('#message').removeClass('invisible');
+					$('#message').addClass('alert-success')
+					$('#message').html("<p>"+data.message+"</p>");
+				}
 			}
 		}
 	});	

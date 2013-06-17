@@ -1,7 +1,7 @@
 <?php
 
 	require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
-	$error = null;
+	$data['error'] = 0;
 	try{
 		$db->beginTransaction();
 		
@@ -13,24 +13,21 @@
 			md5($_POST['senha']) ."','". 
 			$_POST['endereco'] ."','". 
 			$_POST['telefone'] ."');";
-		//echo $sql;
-		$db->prepare($sql);
 		$db->exec($sql);
 		
 		$sql = "INSERT INTO Publico VALUES('". $_POST['documento'] ."','". 
 			$_POST['cartao'] ."','". 
 			$_POST['pne'] ."');";
 		//echo $sql;
-		$db->prepare($sql);
 		$db->exec($sql);
-		
-		
 		$db->commit();
+		$data['message'] = "Cadastrado com sucesso!";
 	}
 	catch(PDOException $e){
-		$error = "Erro: " . $e->getMessage();
+		$data['error'] = 1;
+		$data['message'] = "Erro: " . $e->getMessage();
 		$db->rollBack();
 	}
 
-	echo $error;
+	echo json_encode($data);
 ?>

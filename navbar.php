@@ -1,3 +1,6 @@
+<?php 
+	$default_profile_image = "http://z2.cheggcdn.com/sites/default/files/imagecache/50x50/imagefield_default_images/zinch-user-default_0.png";
+?>
 <!-- NAV BAR -->
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
@@ -19,7 +22,7 @@
 				<?php
 				session_start();
 				
-				if(isset($_SESSION['nome']) && isset($_SESSION['emailMD5']) && isset($_SESSION['senha'])){
+				if(isLoggedIn()){
 					$nome = $_SESSION['nome'];
 					$email = $_SESSION['emailMD5'];
 					$senha = $_SESSION['senha'];
@@ -27,7 +30,7 @@
 
 				<div class="nav-collapse collapse pull-right">
 					<ul class="nav"><li><a href="/rockinriobd/minhaconta/"><?php echo $nome; ?></a></li></ul>
-					<a href="/rockinriobd/minhaconta/"><img src="https://secure.gravatar.com/avatar/<?php echo $email; ?>?s=50"/></a>
+					<a href="/rockinriobd/minhaconta/"><img src="https://secure.gravatar.com/avatar/<?php echo $email; ?>?d=<?php echo $default_profile_image ?>&s=50"/></a>
               		<button id="nav-logout" style="margin-left: 30px" class="btn btn-primary">Sair</button>
 				</div>
 				
@@ -52,4 +55,24 @@
 		</div>
 	</div>
 </div>
+<div id="error_message">
+</div>
 <!-- END NAV BAR -->
+
+<?php
+function isAdmin(){
+	if(isset($_SESSION['funcionario']) && $_SESSION['funcionario'] == true){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function isLoggedIn(){
+	if(isset($_SESSION['emailMD5'])){
+		return true;
+	}else{
+		return false;
+	}
+}
+?>

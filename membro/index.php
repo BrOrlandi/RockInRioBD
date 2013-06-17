@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Dias - Rock in Rio 2013</title>
+		<title>Membro - Rock in Rio 2013</title>
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css"/>
 	    <link href="../css/bd.css" rel="stylesheet" type="text/css">
@@ -17,10 +17,10 @@
 
 		<!-- Incluir Barra de Navegação -->
 		<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/navbar.php"); ?>
-            
+
 		</div>
         <div class="container">
-			<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/php/dias.php"); ?> 
+			<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/php/membro.php"); ?> 
         </div>
 		
 		<script src="/rockinriobd/js/jquery-2.0.1.min.js"></script>
