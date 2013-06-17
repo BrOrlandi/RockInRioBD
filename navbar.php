@@ -15,6 +15,7 @@
 				<ul class="nav pull-left">
 					<li><a href="/rockinriobd/">LINE-UP</a></li>
 					<li><a href="/rockinriobd/dias/">DIAS DO EVENTO</a></li>
+					<li><a href="/rockinriobd/ambientes/">AMBIENTES</a></li>
 					<li><a href="/rockinriobd/bandas/">BANDAS</a></li>
 					<li><a href="/rockinriobd/artistas/">ARTISTAS</a></li>
 				</ul>
