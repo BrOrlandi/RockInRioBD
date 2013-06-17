@@ -1,5 +1,8 @@
 <?php 
 	$default_profile_image = "http://z2.cheggcdn.com/sites/default/files/imagecache/50x50/imagefield_default_images/zinch-user-default_0.png";
+	
+	
+	session_start();
 ?>
 <!-- NAV BAR -->
 <div class="navbar navbar-fixed-top">
@@ -14,14 +17,17 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav pull-left">
 					<li><a href="/rockinriobd/">LINE-UP</a></li>
-					<li><a href="/rockinriobd/dias/">DIAS DO EVENTO</a></li>
-					<li><a href="/rockinriobd/ambientes/">AMBIENTES</a></li>
+					<li><a href="/rockinriobd/dias/">DIAS</a></li>
+					<!-- <li><a href="/rockinriobd/ambientes/">AMBIENTES</a></li> -->
 					<li><a href="/rockinriobd/bandas/">BANDAS</a></li>
 					<li><a href="/rockinriobd/artistas/">ARTISTAS</a></li>
+					<?php if(isLoggedIn())
+					{?>
+						<li><a href="/rockinriobd/minhaconta/">MINHA CONTA</a></li>
+					<?php }?>
 				</ul>
 				<div id="nav-log-bar">
 				<?php
-				session_start();
 				
 				if(isLoggedIn()){
 					$nome = $_SESSION['nome'];
@@ -70,7 +76,7 @@ function isAdmin(){
 }
 
 function isLoggedIn(){
-	if(isset($_SESSION['emailMD5'])){
+	if(isset($_SESSION['documento'])){
 		return true;
 	}else{
 		return false;
