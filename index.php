@@ -33,8 +33,10 @@
 				<div class="span6">
                 	<div class="text-center">
 						<h1>Ingressos à venda!!!</h1>
+					<?php if(!isLoggedIn()){ ?>
 						<p>Faça o seu cadastro para comprar!</p>
 						<p><a class="btn btn-large btn-primary" href="/rockinriobd/cadastros/cadastro_usuario.php"><span class="icon-user icon-white"></span> Cadastre-se Aqui!</a></p>
+                    <?php } ?>
                     </div>
 				</div>
 			</div>

@@ -2,34 +2,11 @@
 
 
 require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
-require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/funcoes_uteis.php");
+$IMPRIME_DIA = true;
+require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/dias.php");
 	
 
-	try{
-		/*
-		$sql ="SELECT EXTRACT(day FROM D.data) AS dia,EXTRACT(month FROM D.data) AS mes, a.nome, at.banda FROM dia d 
-JOIN ambiente a 
-ON true
-LEFT JOIN atracao at
-ON d.data = at.dia AND at.ambiente = a.nome
-ORDER BY d.data, at.posicao DESC;";
-
-		$result = $db->query($sql);	
-		$dados = $result->fetchAll();
-		$dados_count = sizeof($dados);
-		print_r($dados);
-		
-		if($result->rowCount() == 0){
-			$erro = "Dados não cadastrados!";
-		}else
-		{
-			
-		}
-		
-		*/
-		
-		
-		
+	try{		
 		$sql = "SELECT data,EXTRACT(day FROM D.data) AS dia,EXTRACT(month FROM D.data) AS mes FROM Dia D ORDER BY dia,mes ASC;";
 		
 		$result = $db->query($sql);	
@@ -47,54 +24,7 @@ ORDER BY d.data, at.posicao DESC;";
 		//Para Cada DIA
       	for($i=0; $row = $result->fetch(); $i++){
       		$data = $row['data'];
-			$dia = $row['dia'];
-			$mes = $row['mes'];
-			$diaSemana = converterDiaSemana(date_format(date_create($data), "w"));
-		
-			echo ("<div class=\"lineup_dia\">
-						<div class=\"btn_dia\"><a href=\"/rockinriobd/dias/?d=".$data."\">".$diaSemana." - ".$dia."/".$mes."</a></div><div class=\"row-fluid\">");
-			
-			
-			if($result->rowCount() == 0){
-				$erro = "Dados não cadastrados!";
-			}else{
-			
-				//Para cada Ambiente
-				for($j=0; $j<$ambientes_count; $j++){
-					$ambiente = $ambientes[$j]['nome'];	
-						echo ("<div class=\"span3\" id=\"lineup_ambiente\">
-								       <div class=\"btn_ambiente\"><a href=\"/rockinriobd/ambientes/?a=".$ambiente."\">".$ambiente."</a></div>");
-							echo ("<p>A partir das ".$ambientes[$j]['horas']."h".$ambientes[$j]['minutos']."</p>");
-					
-						
-						$sql = "SELECT banda FROM atracao
-							WHERE dia = '".$data."' AND ambiente = '".$ambiente."'
-							ORDER BY posicao DESC;";
-						$result3 = $db->query($sql);	
-						if($result3->rowCount() == 0){
-							echo ("<div>Em breve!</div>");
-						}else{
-							$bandas = $result3->fetchAll();
-							$bandas_count = sizeof($bandas);
-					
-							//Percorre todas as bandas de um dado dia/ambiente
-							for($k=0; $k<$bandas_count; $k++){
-								$banda = $bandas[$k]['banda'];					
-								
-								echo ("
-								<div class=\"lineup_banda\">
-								<p><a href=\"/rockinriobd/bandas/?b=".$banda."\" class=\"btn btn-info btn_banda\">".$banda."</a></p>
-								</div>\n");
-								
-							}
-						}
-									   
-						echo ("</div>");
-						
-				}
-			
-			}
-			echo ("</div></div>");
+      		imprimeDia($data);
       	}
 			
 		}
