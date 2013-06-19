@@ -10,7 +10,8 @@ $('#nav_logar').submit(function(event) {
 		data: $form.serialize(),
 		success: function(data,status){
 			if(data == "1"){
-				location.reload();
+				//location.reload();
+				location.href = "http://localhost/rockinriobd/minhaconta/";
 				return true;
 			}
 			else

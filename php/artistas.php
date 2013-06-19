@@ -32,6 +32,9 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 					echo ("<p><span style=\"font-size:18px\">".$dados[$i]['funcao']." - <a href=\"/rockinriobd/bandas/?b=".$dados[$i]['banda']."\" class=\"btn btn-info btn_banda\" style=\"margin-top:0px\">".$dados[$i]['banda']."</a></span></p>");
 				}			
 				echo "</p>";
+				if (isAdmin()){
+					echo ("<div style='float: right;'><a href=\"/rockinriobd/artistas/edit.php?a=".$artista."\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Editar</a></div>");
+				}
 				echo ("</div></div>");
 
 			}
@@ -44,6 +47,10 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 		
 		echo ("<div class=\"lista_todos\"><h1 style=\"color:#ffffff;\">Artistas</h1>
 				<div class=\"row-fluid\">");
+				
+				if (isAdmin()){
+					echo ("<div style='float: right;'><a href=\"/rockinriobd/artistas/edit.php\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Adicionar</a></div>");
+				}
 		
 		$result = $db->query($sql);	
 		if($result->rowCount() == 0){

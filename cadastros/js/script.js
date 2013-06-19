@@ -36,9 +36,10 @@ $('#cadastrar_usuario').submit(function(event) {
 					$('#message').removeClass('invisible');
 					$('#message').html("<p>"+data.message+"</p>");
 				}else{
-					$('#message').removeClass('invisible');
-					$('#message').addClass('alert-success')
-					$('#message').html("<p>"+data.message+"</p>");
+					//$('#message').removeClass('invisible');
+					//$('#message').addClass('alert-success')
+					//$('#message').html("<p>"+data.message+"</p>");
+					$('#page').html("<div class=\"alert alert-success\"><p>"+data.message+"</p></div>");
 				}
 			}
 		}

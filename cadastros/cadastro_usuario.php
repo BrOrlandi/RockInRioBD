@@ -14,10 +14,12 @@
 	<body>
 		
 		<!-- Incluir Barra de Navegação -->
-		<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/navbar.php"); ?>
+		<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/navbar.php"); 
+		if(!isLoggedIn()){
+		?>
 		
 				
-		<div class="container">
+		<div id="page" class="container">
 <form id="cadastrar_usuario" class="form-horizontal" method="POST" data-async action="/rockinriobd/php/cadastro_publico.php">
 <fieldset>
 
@@ -145,7 +147,13 @@
 			<div id="message" class="alert invisible"></div>
 
 		</div>
-		
+		<?php }
+		else{
+			?>
+			<div id="message" class="alert alert-danger">Você já está logado!</div>
+
+			<?php
+		}?>
 		<script src="/rockinriobd/js/jquery-2.0.1.min.js"></script>
 		<script src="/rockinriobd/bootstrap/js/bootstrap.min.js"></script>
 		<script src="js/script.js"></script>

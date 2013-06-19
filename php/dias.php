@@ -81,7 +81,7 @@ function imprimeDia($data){
 	$ambientes_count = sizeof($ambientes);
 	
 	echo ("<div class=\"lineup_dia\"><span class=\"btn_dia\"><a href=\"/rockinriobd/dias/?d=".$data."\">".$diaSemana." - ".$dia."/".$mes."</a></span>");
-	if($ingressos > 4){
+	if($ingressos > 0){
 		echo "<a style='margin-top:-5px;' href=\"/rockinriobd/ingressos/?c=".$data."\" class=\"btn btn-success ingressos\">COMPRAR INGRESSOS</a>";
 	}else{
 		echo "<a style='margin-top:-5px;' class=\"btn btn-danger ingressos disabled\">INGRESSOS ESGOTADOS</a>";
@@ -115,9 +115,15 @@ function imprimeDia($data){
 							$banda = $bandas[$k]['banda'];					
 							
 							echo ("
-							<div class=\"lineup_banda\">
+							<div class=\"lineup_banda\" style='float: left;'>
 							<p><a href=\"/rockinriobd/bandas/?b=".$banda."\" class=\"btn btn-info btn_banda\">".$banda."</a></p>
 							</div>\n");
+							if (isAdmin()){
+								echo ("
+								<div style='float: right;'>
+								<p><a href='/rockinriobd/php/excluir_atracao.php?d=".$data."&a=".$ambiente."&b=".$banda."' class=\"btn btn-danger btn_banda\">X</a></p>
+								</div>\n");
+							}
 							
 						}
 					}

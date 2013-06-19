@@ -42,7 +42,11 @@
 			</div>
 		</div>
         <div class="container">
-        	<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/php/lineup.php"); ?> 
+        	<?php require($_SERVER["DOCUMENT_ROOT"] . "/rockinriobd/php/lineup.php"); 
+        	if (isAdmin()){
+					echo ("<div style='float: right;'><a href=\"/rockinriobd/cadastros/cadastro_atracao.php\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Nova Atração</a></div>");
+			}
+        	?> 
         </div>
 	</body>
 	

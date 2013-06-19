@@ -67,7 +67,7 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 					$dados = $result->fetchAll();
 					$dados_count = sizeof($dados);
 					for($i=0;$i<$dados_count;$i++){
-						echo "<p><span style=\"font-size:18px\"><a href=\"/rockinriobd/membro/?m=".$dados[$i]['documento']."\" class=\"btn btn-info btn_banda\" style=\"margin-top:0px\">".$dados[$i]['nome']."</a> - ".$dados[$i]['funcao']."</span></p>";
+						echo "<p><span style=\"font-size:18px\"><a href=\"/rockinriobd/membro/?m=".$dados[$i]['documento']."\" class=\"btn btn-info btn_banda\" style=\"margin-top:0px\">".$dados[$i]['nome']."</a> - ".$dados[$i]['funcao']."<a href=\"/rockinriobd/membro/edit.php?m=".$dados[$i]['documento']."\" class=\"btn btn-primary btn_banda\" style=\"margin-top:0px\">Editar</a></span></p>";
 					}
 					if($dados_count == 0)
 					{
@@ -94,6 +94,9 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 						echo "<tr>
 					            <td>".$dados[$i]['titulo']."</td>
 					            <td>".str_pad($dados[$i]['minutos'], 2,'0', STR_PAD_LEFT).":".str_pad($dados[$i]['segundos'], 2,'0', STR_PAD_LEFT)."</td>
+								<td>
+									<div style='float: right;'><a href=\"/rockinriobd/bandas/cadastro_musica.php?m=".$dados[$i]['titulo']."&ba=".$banda."\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Editar</a></div>
+								</td>
 					          </tr>";
 					}
 					echo "</tbody></table>";
@@ -101,6 +104,8 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 					{
 						echo "<p>Nenhuma cadastrada.</p>";
 					}
+					
+					echo ("<div style='float: right;'><a href=\"/rockinriobd/bandas/edit.php?b=".$banda."\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Editar</a></div>");
 				}
 			
 				
@@ -121,6 +126,10 @@ require ($_SERVER["DOCUMENT_ROOT"]."/rockinriobd/php/database_init.php");
 			}else
 			{
 				echo ("<div class=\"lista_todos\"><h1 style=\"color:#ffffff;\">Bandas</h1><div class=\"row-fluid\">");
+				
+				if (isAdmin()){
+					echo ("<div style='float: right;'><a href=\"/rockinriobd/bandas/edit.php\" class=\"btn btn-primary btn_banda \" style=\"margin-top:0px\">Adicionar</a></div>");
+				}
 	
 				//Para Cada Banda
 	      		for($i=0; $row = $result->fetch(); $i++){
