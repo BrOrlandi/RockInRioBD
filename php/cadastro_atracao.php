@@ -10,10 +10,6 @@
 				$_POST['capacidade'] ."');";
 			$db->exec($sql);
 			
-			$db->commit();
-		
-			$db->beginTransaction();
-			
 			$sql = "INSERT INTO atracao VALUES('". $_POST['dia'] ."','". 
 				$_POST['ambiente'] ."','". 
 				$_POST['banda'] ."','". 

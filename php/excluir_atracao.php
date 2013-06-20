@@ -15,7 +15,7 @@
 			$db->commit();
 
 			
-			$data['message'] = "Cadastrado com sucesso!";
+			$data['message'] = "Excluido com sucesso!";
    		
 		
 	}
