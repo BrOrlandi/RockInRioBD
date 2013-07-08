@@ -11,7 +11,7 @@ $('#nav_logar').submit(function(event) {
 		success: function(data,status){
 			if(data == "1"){
 				//location.reload();
-				location.href = "http://localhost/rockinriobd/minhaconta/";
+				location.href = "/rockinriobd/minhaconta/";
 				return true;
 			}
 			else
