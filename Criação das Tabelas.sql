@@ -1,0 +1,166 @@
+CREATE DATABASE "RockInRioDB"
+  WITH ENCODING='UTF8'
+       OWNER=rockinrio
+       CONNECTION LIMIT=-1;
+
+
+
+DROP TABLE IF EXISTS Usuario CASCADE;
+DROP TABLE IF EXISTS Publico CASCADE;
+DROP TABLE IF EXISTS Funcionario CASCADE;
+DROP TABLE IF EXISTS Musica CASCADE;
+DROP TABLE IF EXISTS Banda CASCADE;
+DROP TABLE IF EXISTS Banda_Artista CASCADE;
+DROP TABLE IF EXISTS Atracao CASCADE;
+DROP TABLE IF EXISTS Dia CASCADE;
+DROP TABLE IF EXISTS Ingresso CASCADE;
+DROP TABLE IF EXISTS Ambiente CASCADE;
+DROP TABLE IF EXISTS Camarim CASCADE;
+DROP TABLE IF EXISTS Membro CASCADE;
+DROP TABLE IF EXISTS Empresario CASCADE;
+DROP TABLE IF EXISTS Artista CASCADE;
+
+CREATE TABLE Usuario (
+documento VARCHAR(10) PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+sexo VARCHAR(9) NOT NULL,
+data_nasc DATE NOT NULL,
+tipo VARCHAR(11) NOT NULL,
+email VARCHAR(50) NOT NULL UNIQUE,
+senha CHAR(32) NOT NULL, -- usaremos criptografia MD5 da senha que gera 32 caracteres de um hash.
+endereco VARCHAR(100) NOT NULL,
+telefone VARCHAR(11) NOT NULL,
+
+CONSTRAINT check_nome CHECK (nome <> ''),
+CONSTRAINT check_sexo CHECK (sexo LIKE 'MASCULINO' or sexo LIKE 'FEMININO'),
+CONSTRAINT check_tipo CHECK (tipo LIKE 'PUBLICO' or tipo LIKE 'FUNCIONARIO')
+);
+
+CREATE TABLE Publico(
+usuario VARCHAR(10) PRIMARY KEY,
+n_cartao VARCHAR(20) NOT NULL,
+pne CHAR(3) NOT NULL,
+
+CONSTRAINT fk_usuario FOREIGN KEY (usuario) REFERENCES Usuario(documento) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT check_pne CHECK (pne LIKE 'SIM' or pne LIKE 'NAO')
+);
+
+CREATE TABLE Funcionario(
+usuario VARCHAR(10) PRIMARY KEY,
+data_admissão DATE NOT NULL,
+
+CONSTRAINT fk_usuario FOREIGN KEY (usuario) REFERENCES Usuario(documento) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Dia(
+data DATE PRIMARY KEY
+);
+
+CREATE TABLE Ingresso(
+dia DATE,
+numero INTEGER,
+tipo VARCHAR(7) DEFAULT NULL,
+comprador VARCHAR(10) DEFAULT NULL,
+data DATE,
+hora TIME,
+
+CONSTRAINT fk_dia FOREIGN KEY (dia) REFERENCES Dia(data) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT pk_dia_numero PRIMARY KEY (dia,numero),
+CONSTRAINT check_tipo CHECK (tipo LIKE 'MEIA' or tipo LIKE 'INTEIRA'),
+CONSTRAINT fk_comprador FOREIGN KEY (comprador) REFERENCES Publico(usuario) ON DELETE SET NULL ON UPDATE CASCADE --quando o comprador é excluido, o ingresso ainda existe porem sem comprador.
+);
+
+CREATE TABLE Ambiente(
+nome VARCHAR(20) PRIMARY KEY,
+descricao VARCHAR(255) NOT NULL,
+hora_de_inicio TIME NOT NULL
+);
+
+CREATE TABLE Camarim(
+nome VARCHAR(40) PRIMARY KEY,
+capacidade INTEGER NOT NULL
+);
+
+CREATE TABLE Empresario(
+documento VARCHAR(10) PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+sexo VARCHAR(9) NOT NULL,
+data_nasc DATE NOT NULL,
+email VARCHAR(50) NOT NULL,
+telefone VARCHAR(11) NOT NULL,
+
+CONSTRAINT check_nome CHECK (nome <> ''),
+CONSTRAINT check_sexo CHECK (sexo LIKE 'MASCULINO' or sexo LIKE 'FEMININO')
+);
+
+CREATE TABLE Banda(
+nome VARCHAR(30) PRIMARY KEY,
+ano_de_formacao INTEGER,
+estilo VARCHAR(20),
+site VARCHAR(30),
+empresario VARCHAR(10) NOT NULL,
+
+CONSTRAINT fk_empresario FOREIGN KEY (empresario) REFERENCES Empresario(documento) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Musica(
+banda VARCHAR(30),
+titulo VARCHAR(30),
+duracao TIME NOT NULL, 
+posicao INTEGER NOT NULL,
+
+CONSTRAINT fk_banda FOREIGN KEY (banda) REFERENCES Banda(nome) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT pk_banda_titulo PRIMARY KEY (banda, titulo),
+CONSTRAINT unique_banda_posicao UNIQUE (banda,posicao)
+);
+
+CREATE TABLE Atracao(
+dia DATE,
+ambiente VARCHAR(20),
+banda VARCHAR(30),
+posicao INTEGER NOT NULL,
+camarim VARCHAR(40) NOT NULL,
+
+CONSTRAINT fk_dia FOREIGN KEY (dia) REFERENCES Dia(data) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_ambiente FOREIGN KEY (ambiente) REFERENCES Ambiente(nome) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_banda FOREIGN KEY (banda) REFERENCES Banda(nome) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_camarim FOREIGN KEY (camarim) REFERENCES Camarim(nome) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT pk_dia_ambiente_banda PRIMARY KEY (dia,ambiente,banda),
+CONSTRAINT unique_dia_ambiente_posicao UNIQUE (dia,ambiente,posicao),
+CONSTRAINT unique_banda UNIQUE (banda)
+);
+
+CREATE TABLE Membro(
+documento VARCHAR(10) PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+sexo VARCHAR(9) NOT NULL,
+data_nasc DATE NOT NULL,
+funcao VARCHAR(30) NOT NULL,
+banda VARCHAR(30) NOT NULL,
+
+CONSTRAINT check_nome CHECK (nome <> ''),
+CONSTRAINT check_sexo CHECK (sexo LIKE 'MASCULINO' or sexo LIKE 'FEMININO'),
+CONSTRAINT fk_banda FOREIGN KEY (banda) REFERENCES Banda(nome) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Artista(
+documento VARCHAR(10) PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+sexo VARCHAR(9) NOT NULL,
+data_nasc DATE NOT NULL,
+nome_artistico VARCHAR(30),
+
+CONSTRAINT check_nome CHECK (nome <> ''),
+CONSTRAINT check_sexo CHECK (sexo LIKE 'MASCULINO' or sexo LIKE 'FEMININO'),
+CONSTRAINT unique_nome_artistico UNIQUE (nome_artistico)
+);
+
+CREATE TABLE Banda_Artista(
+banda VARCHAR(30),
+artista VARCHAR(10),
+funcao VARCHAR(20),
+
+CONSTRAINT pk_banda_artista_funcao PRIMARY KEY (banda,artista,funcao),
+CONSTRAINT fk_banda FOREIGN KEY (banda) REFERENCES Banda(nome) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_artista FOREIGN KEY (artista) REFERENCES Artista(documento) ON DELETE CASCADE ON UPDATE CASCADE
+);
